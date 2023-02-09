@@ -27,6 +27,9 @@
     <div style="display: none; margin-top: 20px" class="table-model-container">
       <?php include("model.php") ?>
     </div>
+    <div style="display: none; margin-top: 20px" class="table-model3d-container">
+      <?php include("model3d.php") ?>
+    </div>
   </div>
 
   <!-- main wrapper end -->
@@ -59,6 +62,7 @@
         loadUserTableInLayout('.table-container', layout);
         document.querySelector('.list-container').style.display = "block";
         document.querySelector('.table-model-container').style.display = "block";
+        document.querySelector('.table-model3d-container').style.display = "block";
       } catch (err) {
         alert(err);
       }
