@@ -1,0 +1,14 @@
+[
+  {
+    "source": "cat",
+    "translate": "кошка"
+  },
+  {
+    "source": "dog",
+    "translate": "собака"
+  },
+  {
+    "source": "table",
+    "translate": "стол"
+  }
+]
