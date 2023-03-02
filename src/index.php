@@ -17,10 +17,39 @@
   <!-- main wrapper start -->
 
   <div class="wrapper">
-    <div class="button-file">
-      <input class="button-file__input" type="file" accept="image" />
+    <div class="table-container">
+      <table border="3" class="table" align="center">
+        <tr>
+          <th align="center">Фамилия</th>
+          <th align="center">Имя</th>
+          <th align="center">Отчество</th>
+          <th align="center">Дата рождения</th>
+          <th align="center">Место рождения</th>
+        </tr>
+        <tr>
+          <td class="lastName" align="center"></td>
+          <td class="firstName" align="center"></td>
+          <td class="surName" align="center"></td>
+          <td class="birthday" align="center"></td>
+          <td class="placeOfBirth" align="center"></td>
+        </tr>
+        <tr>
+          <th colspan="5" align="center">Дополнительная информация</th>
+        </tr>
+        <tr>
+          <td colspan="1" rowspan="2">
+            <img style="object-fit: cover; width: 72px; height: 100%" src="/uploads/images/avatar.jpeg" alt="Avatar user" />
+          </td>
+          <td colspan="2" align="center">РОСТ</td>
+          <td class="height" colspan="2" align="center">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">ВЕС</td>
+          <td class="weight" colspan="2" align="center"></td>
+        </tr>
+      </table>
     </div>
-    <div class="table-container"></div>
     <div style="display: none; margin-top: 20px" class="list-container">
       <?php include("list.php") ?>
     </div>
@@ -37,39 +66,11 @@
   <!-- script start -->
 
   <script type="text/javascript">
-    const loadUserTableInLayout = (selector, layout) => {
-      document.querySelector(selector).innerHTML += `${layout}`;
-    }
-
-    const postUserData = async (user) => {
-      const formData = new FormData();
-      formData.append('firstName', user.firstName);
-      formData.append('lastName', user.lastName);
-      formData.append('surName', user.surName);
-      formData.append('birthday', user.birthday);
-      formData.append('placeOfBirth', user.placeOfBirth);
-      formData.append('height', user.height);
-      formData.append('weight', user.weight);
-      formData.append('img', user.img);
-      console.log(formData);
-
-      try {
-        const response = await fetch('table.php', {
-          method: 'POST',
-          body: formData,
-        })
-        const layout = await response.text();
-        loadUserTableInLayout('.table-container', layout);
-        document.querySelector('.list-container').style.display = "block";
-        document.querySelector('.table-model-container').style.display = "block";
-        document.querySelector('.table-model3d-container').style.display = "block";
-      } catch (err) {
-        alert(err);
-      }
+    const loadTextInLayout = (selector, value) => {
+      document.querySelector(selector).innerHTML += value;
     }
 
     const user = {};
-    const fileInput = document.querySelector('.button-file__input');
 
     user.firstName = prompt('Ваше имя:');
     user.lastName = prompt('Ваша фамилия:');
@@ -79,12 +80,13 @@
     user.height = prompt('Рост:');
     user.weight = prompt('Вес:');
 
-    fileInput.addEventListener('change', (event) => {
-      user.img = fileInput.files[0];
-      postUserData(user);
-      console.log(user);
-      document.querySelector('.button-file').remove();
-    })
+    loadTextInLayout('.firstName', user.firstName);
+    loadTextInLayout('.lastName', user.lastName);
+    loadTextInLayout('.surName', user.surName);
+    loadTextInLayout('.birthday', user.birthday);
+    loadTextInLayout('.placeOfBirth', user.placeOfBirth);
+    loadTextInLayout('.height', user.height);
+    loadTextInLayout('.weight', user.weight);
   </script>
 
   <!-- script end -->

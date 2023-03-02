@@ -2,24 +2,41 @@
 $my_array = array(
   "Обувь" => array(
     "nike" => array("10000руб", "нет в наличии"),
-    "col2" => array("value3", "value4")
   ),
-  "row2" => array(
-    "col1" => array("value5", "value6"),
-    "col2" => array("value7", "value8")
-  )
+  "Штаны" => array(
+    "nike" => array("10000руб", "нет в наличии"),
+  ),
+  "Куртка" => array(
+    "nike" => array("10000руб", "нет в наличии"),
+  ),
+  "Кепка" => array(
+    "nike" => array("10000руб", "нет в наличии"),
+  ),
 );
 
-echo "<table border='2'>";
+echo "<table align='center' border='2'>";
+echo "<tr>";
+echo "<td align='center' colspan='4'>";
+echo "Низ";
+echo "</td>";
+echo "<td align='center' colspan='4'>";
+echo "Верх";
+echo "</td>";
+echo "</tr>";
+echo "<tr>";
+foreach ($my_array as $row => $value) {
+  echo "<td align='center' colspan='2'>";
+  echo $row;
+  echo "</td>";
+}
+echo "</tr>";
 foreach ($my_array as $row => $columns) {
-  echo "<tr>";
   foreach ($columns as $column => $values) {
-    echo "<td>";
     foreach ($values as $value) {
-      echo "$value ";
+      echo "<td align='center'>";
+      echo "$value";
+      echo "</td>";
     }
-    echo "</td>";
   }
-  echo "</tr>";
 }
 echo "</table>";
