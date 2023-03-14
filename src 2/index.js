@@ -1,6 +1,7 @@
 const formDataLeftTask = new FormData();
 const formDataRightTask = new FormData();
 formDataLeftTask.append('select', '');
+formDataLeftTask.append('currentWord', '');
 formDataRightTask.append('action', '');
 
 const loadComponentInLayout = (selector, layout) => {
@@ -20,13 +21,36 @@ const postFormDataAndLoadLayout = async (path, data, selector) => {
   }
 };
 
+const postFormDataAndLoadInput = async (path, data, input) => {
+  try {
+    const response = await fetch(path, {
+      method: 'POST',
+      body: data,
+    });
+    const text = await response.text();
+    input.value = text;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 document.getElementById('task-one__select-input').addEventListener('change', (event) => {
   formDataLeftTask.set('select', event.target.value);
 });
 
+document.getElementById('translate__input').addEventListener('change', (event) => {
+  const translationInput = document.querySelector('.translation__input');
+  setTimeout(() => {
+    formDataLeftTask.set('currentWord', event.target.value);
+    postFormDataAndLoadInput('task-one-left-block.php', formDataLeftTask, translationInput)
+  }, 0);
+});
+
 document.getElementById('task-one__left-task').addEventListener('submit', (event) => {
   event.preventDefault();
-  if (formDataLeftTask.get('select')) {
+  if (formDataLeftTask.get('select') === 'translate') {
+    document.querySelector('.translate-controller').style.display = "block";
+  } else {
     postFormDataAndLoadLayout('task-one-left-block.php', formDataLeftTask, '.task-one-show__left-block');
   }
 });
@@ -87,33 +111,3 @@ document.getElementById('show').addEventListener('change', (event) => {
   }
 });
 
-const translation = {
-  source: '',
-  translate: '',
-};
-
-const postTranslation = async (source) => {
-  try {
-    const response = await fetch('https://libretranslate.de/translate', {
-      method: 'POST',
-      body: JSON.stringify({
-        q: source,
-        source: 'ru',
-        target: 'en',
-      }),
-      headers: { "Content-Type": "application/json" }
-    });
-    const data = await response.json();
-    translation.translate = data.translatedText;
-    document.getElementById('translation__input').value = translation.translate;
-  } catch {
-    console.log(err);
-  }
-};
-
-document.getElementById('translate__input').addEventListener('change', (event) => {
-  setTimeout(() => {
-    translation.source = event.target.value;
-    postTranslation(translation.source);
-  }, 1000);
-});

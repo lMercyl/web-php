@@ -98,7 +98,7 @@
               <div class="task-form__title-select">
                 <span>Тара:</span>
               </div>
-              <select name="type" form="task-two__form" multiple>
+              <select name="type[]" form="task-two__form" multiple>
                 <option value="Бьющаяся" selected>Бьющаяся</option>
                 <option value="Хрупкая">Хрупкая</option>
                 <option value="Водонепроницаемая">Водонепроницаемая</option>
@@ -110,11 +110,11 @@
                 <span>Вес:</span>
               </div>
               <label>
-                <input name="weight" type="radio" value="до" />до 50 кг
-              </label>
-              <label>
-                <input name="weight" type="radio" value="больше" />больше 50 кг
-              </label>
+                <input name="weight" type="radio" value=" <50 кг" />
+                < 50 кг </label>
+                  <label>
+                    <input name="weight" type="radio" value=" >50 кг" /> > 50 кг
+                  </label>
             </div>
           </div>
           <div class="task-form__controller">

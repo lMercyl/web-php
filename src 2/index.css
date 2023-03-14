@@ -68,3 +68,8 @@ ul {
 .task-one__show-value {
   margin-bottom: 1rem;
 }
+
+.translation-block {
+  display: flex;
+  align-items: center;
+}

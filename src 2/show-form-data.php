@@ -1,5 +1,6 @@
 <?php
 $data = $_POST;
+$type = $_POST["type"];
 ?>
 
 <!DOCTYPE html>
@@ -22,13 +23,13 @@ $data = $_POST;
   <div class="wrapper">
     <div class="task-one__info show-column">
       <div class="task-one__show-value">
-        <span>Дата создания извещения: <?php echo $data['date'] ?></span>
+        <span>Дата создания извещения: <?php echo '<p style="color: red">' . $data['date'] ?></span>
       </div>
       <div class="task-one__show-value">
-        <span>Привет <?php echo $data['name'] ?>!</span>
+        <span>Привет <?php echo '<p style="color: red">' . $data['name'] ?>!</span>
       </div>
       <div class="task-one__show-value">
-        <span>Ваш email <?php echo $data['email'] ?></span>
+        <span>Ваш email <?php echo  '<p style="color: red">' . $data['email'] ?></span>
       </div>
       <div class="task-one__show-value">
         <div>
@@ -36,42 +37,51 @@ $data = $_POST;
         </div>
         <?php if (array_key_exists('curier', $data)) : ?>
           <div>
-            <span><?php echo $data['curier'] ?></span>
+            <span><?php echo '<p style="color: red">' . $data['curier'] ?></span>
           </div>
         <?php endif ?>
         <?php if (array_key_exists('airship', $data)) : ?>
           <div>
-            <span><?php echo $data['airship'] ?></span>
+            <span><?php echo '<p style="color: red">' . $data['airship'] ?></span>
           </div>
         <?php endif ?>
         <?php if (array_key_exists('train', $data)) : ?>
           <div>
-            <span><?php echo $data['train'] ?></span>
+            <span><?php echo '<p style="color: red">' . $data['train'] ?></span>
           </div>
         <?php endif ?>
         <?php if (array_key_exists('car', $data)) : ?>
           <div>
-            <span><?php echo $data['car'] ?></span>
+            <span><?php echo '<p style="color: red">' . $data['car'] ?></span>
           </div>
         <?php endif ?>
       </div>
       <div class="task-one__show-value">
-        <span>Форма поссылки: <?php echo $data['form'] ?></span>
+        <span>Форма поссылки: <?php echo '<p style="color: red">' . $data['form'] . '</p>' ?></span>
       </div>
       <div class="task-one__show-value">
-        <span>Количество: <?php echo $data['amount'] ?></span>
+        <span>Количество: <?php echo '<p style="color: red">' . $data['amount'] ?></span>
       </div>
       <div class="task-one__show-value">
-        <span>Вес: <?php echo $data['weight'] ?></span>
+        <span>Вес: <?php echo '<p style="color: red">' . $data['weight'] ?></span>
+      </div>
+
+      <div class="task-one__show-value">
+        <span style="color: <?php echo $data['color'] ?>">Цвет: <?php echo $data['color'] ?></span>
+        <div style="width: 50px; height: 25px; background: <?php echo $data['color'] ?>; border: 1px solid black"></div>
+      </div>
+
+      <div class="task-one__show-value">
+        <span class="red_span">Тара:<br>
+          <?php
+          foreach ($type as $i => $type) {
+            echo '<p style="color: red">' . $type . '</br>';
+          }
+          ?>
+        </span>
       </div>
       <div class="task-one__show-value">
-        <span>Цвет: <?php echo $data['color'] ?></span>
-      </div>
-      <div class="task-one__show-value">
-        <span>Тара: <?php echo $data['type'] ?></span>
-      </div>
-      <div class="task-one__show-value">
-        <span>Комментарий: <?php echo $data['comment'] ?></span>
+        <span>Комментарий: <?php echo '<p style="color: red">' . $data['comment'] ?></span>
       </div>
     </div>
 </body>

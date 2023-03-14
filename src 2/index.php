@@ -77,14 +77,14 @@
     </div>
     <div class="task-one__show">
       <div id="task-one-show__left-block" class="task-one-show__left-block">
-        <div>
-          <label>
+        <div class="translate-controller" style="display: none">
+          <label style="display: block">
             Ваше слово
             <input id="translate__input" />
           </label>
-          <label>
+          <label class="translation-block" style="margin-top: 0.5rem">
             Перевод
-            <input id="translation__input" disabled />
+            <input class="translation__input" />
           </label>
         </div>
       </div>
